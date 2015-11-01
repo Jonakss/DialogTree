@@ -1,0 +1,30 @@
+new(node1);
+	new(node2);
+	new(node3);
+	new(node4);
+	new(node5);
+	dialogo := node1;
+
+	{ NODO1 }
+	AgregarFinalLista(node2, dialogo^.respuestas);
+	AgregarFinalLista(node5, dialogo^.respuestas);
+	{ NODO2 }
+	AgregarFinalLista(node3, node2^.respuestas);
+	AgregarFinalLista(node4, node2^.respuestas);
+	{ NODO3 }
+	AgregarFinalLista(node5, node3^.respuestas);
+	AgregarFinalLista(node4, node3^.respuestas);
+
+	{ Ingreso de valores }
+	write('Ingrese dialogo de nodo 1 ');
+	LeerEntradaCadenaConTope(dialogo^.npcDialog);
+	write('Ingrese dialogo de nodo 2 ');
+	LeerEntradaCadenaConTope(node2^.npcDialog);
+	write('Ingrese dialogo de nodo 3 ');
+	LeerEntradaCadenaConTope(node3^.npcDialog);
+	write('Ingrese dialogo de nodo 4 ');
+	LeerEntradaCadenaConTope(node4^.npcDialog);
+	write('Ingrese dialogo de nodo 5 ');
+	LeerEntradaCadenaConTope(node5^.npcDialog);
+
+	NavegarArbol(dialogo);
