@@ -18,27 +18,23 @@ type
 		respuestas: lista
 	end;
 
-{ Procedimientos del arbol }
-procedure addNodes(var dialogo:dialog);
-var
-	variableName: Integer;
-	nodo: ^node;
+{ Procedimientos extras }
+procedure salir(var exit: Boolean);
+var 
+	o: char;
 begin
-	{ Creando nodo }
-	new(nodo);
-	Writeln('Ingrese npcDialog: ');
-	LeerEntradaCadenaConTope(nodo^.npcDialog);
-
-	if dialogo = nil then { árbol vacio } 
-	begin
-		dialogo:=nodo;
-	end
-	else { árbol con algún nodo } 
-	begin
-		
-	end;
-	Writeln('Se ha agregado el nodo al árbol');
-	continuar();
+	repeat
+		Writeln('Esta seguro que quiere salir (s: si, n: no)? ');
+		readln(o);
+	until (o = 's') or (o = 'n');
+	if o = 's' then
+		exit:= true
+	else if o = 'n' then
+		exit:= false
+end;
+procedure continuar;
+begin
+	Writeln('Presione enter para continuar'); readln();
 end;
 
 { Procedimientos de Arreglo con tope }
@@ -68,19 +64,27 @@ begin
 	writeln();
 end;
 
-{ Procedimientos extras }
-procedure salir(var exit: Boolean);
-var 
-	o: char;
+{ Procedimientos del arbol }
+procedure addNodes(var dialogo:dialog);
+var
+	variableName: Integer;
+	nodo: ^node;
 begin
-	repeat
-		Writeln('Esta seguro que quiere salir (s: si, n: no)? ');
-		readln(o);
-	until (o = 's') or (o = 'n');
-	if o = 's' then
-		exit:= true
-	else if o = 'n' then
-		exit:= false
+	{ Creando nodo }
+	new(nodo);
+	Writeln('Ingrese npcDialog: ');
+	LeerEntradaCadenaConTope(nodo^.npcDialog);
+
+	if dialogo = nil then { árbol vacio } 
+	begin
+		dialogo:=nodo;
+	end
+	else { árbol con algún nodo } 
+	begin
+		
+	end;
+	Writeln('Se ha agregado el nodo al árbol');
+	continuar();
 end;
 
 { MAIN }
