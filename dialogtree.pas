@@ -41,6 +41,33 @@ begin
 	continuar();
 end;
 
+{ Procedimientos de Arreglo con tope }
+procedure LeerEntradaCadenaConTope(var cadena:arrayCharTope);
+var
+	letra: char;
+	contador: integer;
+begin
+	contador:=0;
+	read(letra);
+	while letra <> chr(10) do { Letra distinto de fin de linea (enter) }
+	begin
+		contador := contador + 1;
+		cadena.tope:= contador;
+		cadena.elem[contador] := letra;
+		read(letra);
+	end;		
+end;
+procedure EscribirCadenaConTope(cadena:arrayCharTope);
+var
+	i:integer;
+begin
+	for i := 1 to cadena.tope do
+		begin
+			Write(cadena.elem[i]);
+		end;
+	writeln();
+end;
+
 { Procedimientos extras }
 procedure salir(var exit: Boolean);
 var 
