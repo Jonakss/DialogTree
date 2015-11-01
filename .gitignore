@@ -1,0 +1,13 @@
+# Object files
+*.o
+
+# Precompiled Headers
+
+# Libraries
+
+# Shared objects (inc. Windows DLLs)
+
+# Executables
+*.exe
+
+# Debug files
