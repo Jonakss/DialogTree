@@ -15,7 +15,7 @@ type
 	end;
 	node = record
 		npcDialog : arrayCharTope;
-		respuestas: lista
+		options: lista
 	end;
 
 { Procedimientos extras }
@@ -68,10 +68,10 @@ end;
 { Procedimientos del arbol }
 procedure selectNode(dialogo:dialog; i:integer):dialog;
 var 
-	actual: ^nodo;
+	actual: lista;
 	j:integer;
 begin
-	actual:=dialogo;
+	actual:=dialogo^.options;
 	while actual <> nil do
 	begin
 		j:=j+1;
@@ -79,7 +79,7 @@ begin
 			nodoSelccionado:=actual
 		else
 			nodoSelccionado:=nil
-		actual:=actual^.respuestas^.sig;
+		actual:=actual^.options^.sig;
 	end;
 end;
 procedure showNodes(dialogo:dialog);
@@ -99,19 +99,19 @@ begin
 			i:=i+1;
 			Write(i, ') '); EscribirCadenaConTope(actual^.npcDialog);
 
-			if actual^.respuestas = nil then
+			if actual^.options = nil then
 				actual:=nil
 			else
 			begin
 				j:=0;
-				opcActual:=actual^.respuestas;
+				opcActual:=actual^.options;
 				while opcActual <> nil do
 				begin
 					j:=j+1;
 					Write(' | ', j,') '); EscribirCadenaConTope(opcActual^.text);
 					opcActual:=opcActual^.sig;
 				end;
-				actual:=actual^.respuestas^.elem; 
+				actual:=actual^.options^.elem; 
 			end;
 		end;
 	end;
@@ -137,10 +137,10 @@ begin
 		showNodes(dialogo);
 		Write('Seleccione el nodo padre: '); readln(p);
 		nodoSelccionado:=selectNode(dialogo, p);
-		if nodoSelccionado^.respuestas = nil then
-			nodoSelccionado^.respuestas=nodo
+		if nodoSelccionado^.options = nil then
+			nodoSelccionado^.options = nodo
 		else
-			nodoSelccionado^.respuestas^.sig=nodo
+			nodoSelccionado^.options^.sig = nodo
 	end;
 	continuar();
 end;
