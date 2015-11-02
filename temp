@@ -30,10 +30,7 @@ new(node1);
 	NavegarArbol(dialogo);
 
 
-	procedure continuar;
-begin
-	Writeln('Presione enter para continuar'); readln();
-end;
+
 procedure InsertarFinalLista(var l:lista; elem:dialog);
 var
 	p,q:lista;
